@@ -8,14 +8,14 @@ import {
   TextInput,
 } from "../components";
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   return (
-    <View>
+    <View style={{ margin: "auto" }}>
       <Title text="Login" />
-      <SubTitle text="Use Existing credentials!" />
+      <SubTitle text="Use Existing credentials!" style={{ marginBottom: 40 }} />
       <TextInput
         text="Email:"
         placeHolder="Enter Email Address"
@@ -24,11 +24,14 @@ const Login = () => {
       <TextInput
         text="Password:"
         placeHolder="Enter Password"
-        onLooseFocus={setEmail}
+        onLooseFocus={setPassword}
         password={true}
       />
       <PrimaryButton text="Login" />
-      <NoButton text="Don't have an account? Sign Up" />
+      <NoButton
+        onPress={() => navigation?.navigate("Register")}
+        text="Don't have an account? Sign Up"
+      />
     </View>
   );
 };

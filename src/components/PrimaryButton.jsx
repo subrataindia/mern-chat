@@ -1,7 +1,7 @@
 import { View, Text, Pressable } from "react-native";
 import React from "react";
 
-const PrimaryButton = ({ text }) => {
+const PrimaryButton = ({ text, onPress }) => {
   return (
     <Pressable
       style={({ pressed }) => [
@@ -16,6 +16,7 @@ const PrimaryButton = ({ text }) => {
           opacity: pressed ? 0.5 : 1,
         },
       ]}
+      onPress={onPress}
     >
       <Text
         style={{

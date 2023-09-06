@@ -1,9 +1,9 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const SubTitle = ({ text }) => {
+const SubTitle = ({ text, style }) => {
   return (
-    <View>
+    <View style={{ ...style }}>
       <Text
         style={{
           fontSize: 16,
