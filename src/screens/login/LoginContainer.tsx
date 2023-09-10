@@ -4,11 +4,16 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import LoginComponent from "./LoginComponent";
 
 import { Constants } from "../../utils/constants";
+import { LoginContainerNavigationProp } from "../../Navigator/Stack";
 
-const LoginContainer = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+interface LoginContainerProps {
+  navigation: LoginContainerNavigationProp;
+}
+
+const LoginContainer: React.FC<LoginContainerProps> = ({ navigation }) => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
 
   const handleLogin = async () => {
     try {
@@ -28,6 +33,10 @@ const LoginContainer = ({ navigation }) => {
     }
   };
 
+  const redirectSignup = () => {
+    navigation?.navigate(Constants.screens.register);
+  };
+
   useEffect(() => {
     const checkLoginStatus = async () => {
       try {
@@ -40,7 +49,8 @@ const LoginContainer = ({ navigation }) => {
       }
     };
     checkLoginStatus();
-  });
+  }, []);
+
   return (
     <LoginComponent
       email={email}
@@ -48,8 +58,8 @@ const LoginContainer = ({ navigation }) => {
       password={password}
       setPassword={setPassword}
       error={error}
-      setError={setError}
       handleLogin={handleLogin}
+      redirectSignup={redirectSignup}
     />
   );
 };

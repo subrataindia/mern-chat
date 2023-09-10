@@ -3,6 +3,9 @@
     "name": "mern-chat",
     "slug": "mern-chat",
     "version": "1.0.0",
+    "entryPoint": "./node_modules/expo/AppEntry.js",
+    "jsx": "react-native",
+    "typescript": "./tsconfig.json",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -11,9 +14,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },

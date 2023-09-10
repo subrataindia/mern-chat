@@ -10,7 +10,23 @@ import {
 } from "../../components";
 import { Constants } from "../../utils/constants";
 
-const LoginComponent = ({ setEmail, setPassword, error, handleLogin }) => {
+interface LoginComponentProps {
+  email: string;
+  setEmail: (email: string) => void;
+  password: string;
+  setPassword: (password: string) => void;
+  error: string | null;
+  handleLogin: () => void;
+  redirectSignup: () => void;
+}
+
+const LoginComponent: React.FC<LoginComponentProps> = ({
+  setEmail,
+  setPassword,
+  error,
+  handleLogin,
+  redirectSignup,
+}) => {
   return (
     <View style={styles.container}>
       <Title text="Login" />
@@ -19,6 +35,7 @@ const LoginComponent = ({ setEmail, setPassword, error, handleLogin }) => {
         text="Email:"
         placeHolder="Enter Email Address"
         onLooseFocus={setEmail}
+        password={false}
       />
       <TextInput
         text="Password:"
@@ -30,7 +47,7 @@ const LoginComponent = ({ setEmail, setPassword, error, handleLogin }) => {
       <PrimaryButton text="Login" onPress={handleLogin} />
 
       <NoButton
-        onPress={() => navigation?.navigate(Constants.screens.register)}
+        onPress={redirectSignup}
         text="Don't have an account? Sign Up"
       />
     </View>
