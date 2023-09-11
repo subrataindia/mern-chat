@@ -6,10 +6,10 @@ const MyTextInput = ({
   text = "",
   placeHolder = "",
   onLooseFocus,
-  password,
+  password = false,
 }) => {
   const [value, setChangeValue] = useState("");
-  const [isPasswordVisible, setPasswordVisible] = useState(password | false);
+  const [isPasswordVisible, setPasswordVisible] = useState(password);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!isPasswordVisible);

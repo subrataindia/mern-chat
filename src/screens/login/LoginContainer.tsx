@@ -24,11 +24,11 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ navigation }) => {
 
       const response = await axios.post(Constants.endpoints.login, user);
       const { token } = response.data;
-
-      await AsyncStorage.setItem(Constants.authToken, token);
-      navigation.replace(Constants.screens.home);
+      if (token) {
+        await AsyncStorage.setItem(Constants.authToken, token);
+        navigation.replace(Constants.screens.home);
+      }
     } catch (err) {
-      console.error(err);
       setError("Login failed. Please check your credentials.");
     }
   };
@@ -45,7 +45,7 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ navigation }) => {
           navigation.replace(Constants.screens.home);
         }
       } catch (err) {
-        console.error(err);
+        //console.error(err);
       }
     };
     checkLoginStatus();

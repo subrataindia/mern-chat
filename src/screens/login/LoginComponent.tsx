@@ -8,7 +8,6 @@ import {
   SubTitle,
   TextInput,
 } from "../../components";
-import { Constants } from "../../utils/constants";
 
 interface LoginComponentProps {
   email: string;

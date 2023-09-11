@@ -17,6 +17,7 @@ const PrimaryButton = ({ text, onPress }) => {
         },
       ]}
       onPress={onPress}
+      testID={`${text.toLowerCase().replace(/ /g, "-")}-button`}
     >
       <Text
         style={{
