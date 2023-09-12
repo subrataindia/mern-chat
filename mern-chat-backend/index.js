@@ -10,7 +10,10 @@ const app = express();
 const port = 8000;
 
 // Configure CORS to allow requests from http://localhost:19006
-app.use(cors({ origin: "http://localhost:19006" }));
+//app.use(cors({ origin: "http://localhost:19006" }));
+
+// Allow requests from all origins
+app.use(cors({ origin: "*" }));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -30,6 +33,12 @@ mongoose
   .catch((e) => {
     console.log(`Unable to connect to Mongo DB" ${e.message}`);
   });
+
+app.get("/", (req, res) => {
+  const clientIpAddress = req.socket.remoteAddress;
+  console.log(`Server is running on IP: ${clientIpAddress}, Port: ${port}`);
+  res.send("Hello World");
+});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
@@ -74,6 +83,7 @@ app.post("/login", (req, res) => {
 
   // Check if the email and password are provided
   if (!email || !password) {
+    console.log("Email and Password are required");
     return res.status(404).json({ message: "Email and Password are required" });
   }
 

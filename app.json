@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "mern-chat",
+    "jsEngine": "hermes",
     "slug": "mern-chat",
     "version": "1.0.0",
     "entryPoint": "./node_modules/expo/AppEntry.js",
@@ -14,11 +15,19 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "jsEngine": "jsc",
+      "bundleIdentifier": "com.subrata.mernchat"
     },
     "android": {
+      "permissions": [
+        "INTERNET"
+      ],
+      "package": "com.subrata.mernchat",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -26,6 +35,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e8acfcef-c31d-477f-8f60-53b6252eadfe"
+      }
     }
   }
 }

@@ -16,7 +16,7 @@ interface ConstantsType {
 
 export const Constants: ConstantsType = {
   authToken: "AUTH_TOKEN",
-  baseUrl: "http://localhost:8000",
+  baseUrl: "http://192.168.29.171:8000",
   screens: {
     login: "Login",
     home: "Home",

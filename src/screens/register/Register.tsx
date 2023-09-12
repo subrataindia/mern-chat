@@ -1,9 +1,10 @@
-import { View, Text, Alert } from "react-native";
-import React, { useCallback, useState } from "react";
+import { Alert } from "react-native";
+import React, { useState } from "react";
 import axios from "axios";
 import RegisterComponent from "./RegisterComponent";
-import { RegisterContainerNavigationProp } from "../../Navigator/Stack";
+import { RegisterContainerNavigationProp } from "../../Navigator/RouteParams";
 import { Constants } from "../../utils/constants";
+import { RouteKeys } from "../../Navigator/RouteKeys";
 
 interface RegisterContainerProps {
   navigation: RegisterContainerNavigationProp;
@@ -26,32 +27,30 @@ const Register: React.FC<RegisterContainerProps> = ({ navigation }) => {
         email,
         password,
       };
-      console.log("Handle Press called", user);
+      //console.log("Handle Press called", user);
       const response = await axios.post(Constants.endpoints.register, user);
       Alert.alert("Registration Successful!", "User registered successfully");
-      alert("User registered successfully");
-    } catch (err) {
-      setError(`Unable to register! \n ${err?.response?.data?.message}`);
-      console.log(err);
+      //alert("User registered successfully");
+      navigation.navigate(RouteKeys.Login);
+    } catch (err: any) {
+      if(err.response)
+      setError(`Unable to register! \n ${err.response.data.message}`);
+      //console.log(err);
     }
   };
 
   const redirectLogin = () => {
-    navigation?.navigate(Constants.screens.login);
+    navigation?.navigate(RouteKeys.Login);
   };
 
   return (
     <RegisterComponent
-      name={name}
       setName={setName}
-      email={email}
       setEmail={setEmail}
-      password={password}
       setPassword={setPassword}
       handlePress={handlePress}
       redirectLogin={redirectLogin}
       error={error}
-      setError={setError}
     />
   );
 };

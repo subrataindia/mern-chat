@@ -1,0 +1,2 @@
+https://github.com/facebook/react-native/issues/34828#issuecomment-1627685854
+

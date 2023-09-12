@@ -2,22 +2,16 @@ import { StyleSheet } from "react-native";
 import MyStack from "./Navigator/Stack";
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
+import ErrorBoundary from "./ErrorBoundary";
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    <ErrorBoundary>
+      <NavigationContainer>
+        <MyStack />
+      </NavigationContainer>
+    </ErrorBoundary>
   );
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

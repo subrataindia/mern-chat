@@ -4,7 +4,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import LoginComponent from "./LoginComponent";
 
 import { Constants } from "../../utils/constants";
-import { LoginContainerNavigationProp } from "../../Navigator/Stack";
+import { LoginContainerNavigationProp } from "../../Navigator/RouteParams";
+import { RouteKeys } from "../../Navigator/RouteKeys";
 
 interface LoginContainerProps {
   navigation: LoginContainerNavigationProp;
@@ -24,17 +25,18 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ navigation }) => {
 
       const response = await axios.post(Constants.endpoints.login, user);
       const { token } = response.data;
-
-      await AsyncStorage.setItem(Constants.authToken, token);
-      navigation.replace(Constants.screens.home);
+      if (token) {
+        await AsyncStorage.setItem(Constants.authToken, token);
+        navigation.replace(RouteKeys.Home);
+      }
     } catch (err) {
-      console.error(err);
+      //console.log(err);
       setError("Login failed. Please check your credentials.");
     }
   };
 
   const redirectSignup = () => {
-    navigation?.navigate(Constants.screens.register);
+    navigation?.navigate(RouteKeys.Register);
   };
 
   useEffect(() => {
@@ -42,10 +44,10 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ navigation }) => {
       try {
         const token = await AsyncStorage.getItem(Constants.authToken);
         if (token) {
-          navigation.replace(Constants.screens.home);
+          navigation.replace(RouteKeys.Home);
         }
       } catch (err) {
-        console.error(err);
+        console.log(err);
       }
     };
     checkLoginStatus();

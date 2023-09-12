@@ -1,5 +1,5 @@
-import { View, Text, Alert, StyleSheet } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import React, { FC } from "react";
 
 import {
   PrimaryButton,
@@ -9,15 +9,20 @@ import {
   TextInput,
 } from "../../components";
 
-const RegisterComponent = ({
-  name,
+interface RegisterComponentProps {
+  setName: (name: string) => void;
+  setEmail: (email: string) => void;
+  setPassword: (password: string) => void;
+  error: string | null;
+  handlePress: () => void;
+  redirectLogin: () => void;
+}
+
+const RegisterComponent: FC<RegisterComponentProps> = ({
   setName,
-  email,
   setEmail,
-  password,
   setPassword,
   error,
-  setError,
   handlePress,
   redirectLogin,
 }) => {
