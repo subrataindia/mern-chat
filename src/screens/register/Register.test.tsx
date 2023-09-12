@@ -1,5 +1,6 @@
 // Register.test.tsx
 import React from "react";
+import { Alert } from "react-native";
 import { render, fireEvent, waitFor } from "@testing-library/react-native";
 import axios from "axios"; // You may want to use a mock library for axios
 import Register from "./Register";
@@ -7,8 +8,12 @@ import MockAdapter from "axios-mock-adapter";
 import { Constants } from "../../utils/constants";
 import { RouteKeys } from "../../Navigator/RouteKeys";
 
-// Mock axios post request for testing
-//jest.mock("axios");
+// Mock the Alert.alert method
+jest.mock('react-native/Libraries/Alert/Alert', () => {
+  return {
+    alert: jest.fn(),
+  };
+});
 
 describe("Register Container", () => {
   let mockAxios: MockAdapter;
@@ -17,6 +22,9 @@ describe("Register Container", () => {
   beforeEach(() => {
     mockAxios = new MockAdapter(axios);
     replaceSpy = jest.fn();
+    // jest.spyOn(Alert, 'alert').mockImplementation((title, message) => {
+    //   Alert.alert(title, message);
+    // });
   });
 
   afterEach(() => {
@@ -50,12 +58,14 @@ describe("Register Container", () => {
     // Trigger the registration button click
     fireEvent.press(getByTestId("create-account-button"));
 
-    // Wait for success message
-    // await waitFor(() => getByText("Registration Successful!"));
-    //expect(getByText("Registration Successful!")).toBeTruthy();
-    await waitFor(() => {
-      expect(replaceSpy).toHaveBeenCalledWith(RouteKeys.Login);
-    });
+    await waitFor(()=>{
+      // Expect the Alert.alert method to be called with the success message
+      expect(Alert.alert).toHaveBeenCalledWith(
+        'Registration Successful!',
+        'User registered successfully'
+      );
+      expect(replaceSpy).toHaveBeenCalledWith(RouteKeys.Login)
+    })
   });
 
   it("handles registration failure", async () => {

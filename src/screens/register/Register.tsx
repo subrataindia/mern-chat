@@ -30,9 +30,10 @@ const Register: React.FC<RegisterContainerProps> = ({ navigation }) => {
       //console.log("Handle Press called", user);
       const response = await axios.post(Constants.endpoints.register, user);
       Alert.alert("Registration Successful!", "User registered successfully");
-      alert("User registered successfully");
+      //alert("User registered successfully");
       navigation.navigate(RouteKeys.Login);
     } catch (err: any) {
+      if(err.response)
       setError(`Unable to register! \n ${err.response.data.message}`);
       //console.log(err);
     }
