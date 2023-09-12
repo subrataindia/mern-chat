@@ -10,7 +10,10 @@ const app = express();
 const port = 8000;
 
 // Configure CORS to allow requests from http://localhost:19006
-app.use(cors({ origin: "http://localhost:19006" }));
+//app.use(cors({ origin: "http://localhost:19006" }));
+
+// Allow requests from all origins
+app.use(cors({ origin: "*" }));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

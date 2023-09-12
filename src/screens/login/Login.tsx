@@ -30,6 +30,7 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ navigation }) => {
         navigation.replace(RouteKeys.Home);
       }
     } catch (err) {
+      console.log(err);
       setError("Login failed. Please check your credentials.");
     }
   };
@@ -46,7 +47,7 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ navigation }) => {
           navigation.replace(RouteKeys.Home);
         }
       } catch (err) {
-        //console.error(err);
+        console.log(err);
       }
     };
     checkLoginStatus();
