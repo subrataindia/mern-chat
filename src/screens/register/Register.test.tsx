@@ -64,7 +64,6 @@ describe("Register Container", () => {
         'Registration Successful!',
         'User registered successfully'
       );
-      expect(replaceSpy).toHaveBeenCalledWith(RouteKeys.Login)
     })
   });
 
@@ -101,5 +100,37 @@ describe("Register Container", () => {
     });
   });
 
+  it("navigates to Login, when registration successful", async () => {
+    const { getByText, getByPlaceholderText, getByTestId } = render(
+      <Register navigation={{ navigate: replaceSpy }} />
+    );
+
+    const nameInput = getByPlaceholderText("Enter your name");
+    const emailInput = getByPlaceholderText("Enter Email Address");
+    const passwordInput = getByPlaceholderText("Enter Password");
+
+    // Simulate user input
+    fireEvent.changeText(nameInput, "John");
+    fireEvent.changeText(emailInput, "john@example.com");
+    fireEvent.changeText(passwordInput, "password123");
+
+    // Trigger the onBlur event to update the parent component
+    fireEvent(nameInput, "blur");
+    fireEvent(emailInput, "blur");
+    fireEvent(passwordInput, "blur");
+
+    // Mock the axios.post method to return a successful response
+    mockAxios
+      .onPost(Constants.endpoints.register)
+      .reply(200, { data: { message: "User registered successfully" } });
+
+    // Trigger the registration button click
+    fireEvent.press(getByTestId("create-account-button"));
+
+    await waitFor(()=>{
+      // Expect to redirect to Login
+      expect(replaceSpy).toHaveBeenCalledWith(RouteKeys.Login)
+    })
+  });
   // Add more test cases as needed
 });
