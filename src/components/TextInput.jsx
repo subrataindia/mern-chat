@@ -1,12 +1,13 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import Icon from "@expo/vector-icons/FontAwesome";
+import {FontAwesome as Icon} from "@expo/vector-icons";
 
 const MyTextInput = ({
   text = "",
   placeHolder = "",
   onLooseFocus,
   password = false,
+  Ref = {undefined}
 }) => {
   const [value, setChangeValue] = useState("");
   const [isPasswordVisible, setPasswordVisible] = useState(password);

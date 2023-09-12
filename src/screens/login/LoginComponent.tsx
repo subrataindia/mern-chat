@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import React, {useRef} from "react";
 
 import {
   PrimaryButton,
@@ -26,6 +26,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
   handleLogin,
   redirectSignup,
 }) => {
+
   return (
     <View style={styles.container}>
       <Title text="Login" />
@@ -40,8 +41,9 @@ const LoginComponent: React.FC<LoginComponentProps> = ({
         text="Password:"
         placeHolder="Enter Password"
         onLooseFocus={setPassword}
-        password={true}
-      />
+        password={true}  
+            />
+
       {error && <Text style={styles.errorText}>{error}</Text>}
       <PrimaryButton text="Login" onPress={handleLogin} />
 
