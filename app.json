@@ -1,9 +1,9 @@
 {
   "expo": {
     "name": "mern-chat",
+    "jsEngine": "hermes",
     "slug": "mern-chat",
     "version": "1.0.0",
-    "entryPoint": "./node_modules/expo/AppEntry.js",
     "jsx": "react-native",
     "typescript": "./tsconfig.json",
     "orientation": "portrait",
@@ -16,7 +16,8 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "jsEngine": "jsc"
     },
     "android": {
       "adaptiveIcon": {

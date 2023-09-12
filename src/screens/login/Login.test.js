@@ -2,7 +2,7 @@ import React from "react";
 import { render, fireEvent, waitFor, act } from "@testing-library/react-native";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import LoginContainer from "./LoginContainer";
+import LoginContainer from "./Login";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Constants } from "../../utils/constants";
 

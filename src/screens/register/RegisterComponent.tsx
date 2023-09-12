@@ -1,4 +1,4 @@
-import { View, Text, Alert, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React, { FC } from "react";
 
 import {

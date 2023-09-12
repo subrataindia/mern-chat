@@ -1,4 +1,4 @@
-import Login from "./login/LoginContainer";
+import Login from "./login/Login";
 import Register from "./register/Register";
 import Home from "./Home";
 
