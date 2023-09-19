@@ -11,6 +11,8 @@ interface ConstantsType {
   endpoints: {
     login: string;
     register: string;
+    fetchUsers: string;
+    friendRequest: string;
   };
 }
 
@@ -25,10 +27,14 @@ export const Constants: ConstantsType = {
   endpoints: {
     login: "",
     register: "",
+    fetchUsers: "",
+    friendRequest: ""
   },
 };
 
 Constants.endpoints = {
   login: `${Constants.baseUrl}/login`,
   register: `${Constants.baseUrl}/register`,
+  fetchUsers: `${Constants.baseUrl}/users`,
+  friendRequest: `${Constants.baseUrl}/friend-request`
 };

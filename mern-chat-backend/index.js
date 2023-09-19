@@ -122,3 +122,37 @@ app.post("/login", (req, res) => {
         .json({ message: "Unable to connect to server! Try again later." });
     });
 });
+
+// endpoint to access all the users except the user who's currently logged in
+app.get("/users/:userId", (req, res) => {
+  const loggedInUser = req.params.userId;
+
+  User.find({ _id: { $ne: loggedInUser } })
+    .then((users) => {
+      res.status(200).json(users);
+    })
+    .catch((err) => {
+      res.status(500).json({ message: "Error retriving users" });
+    });
+});
+
+// endpoint to send a request to a particular friend
+app.post("/friend-request", async (req, res) => {
+  const { currentUserId, selectedUserId } = req.body;
+
+  try {
+    // update the receipient's friend request array
+    await User.findByIdAndUpdate(selectedUserId, {
+      $push: { receivedFriendRequests: currentUserId },
+    });
+
+    // update the sender's friend request array
+    await User.findByIdAndUpdate(currentUserId, {
+      $push: { sentFriendRequests: selectedUserId },
+    });
+
+    res.sendStatus(200);
+  } catch (e) {
+    res.sendStatus(500);
+  }
+});
