@@ -11,7 +11,7 @@ const MyStack = () => {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={RouteKeys.Login} component={Login} />
       <Stack.Screen name={RouteKeys.Register} component={Register} />
-      <Stack.Screen name={RouteKeys.Home} component={Home} />
+      <Stack.Screen name={RouteKeys.Home} component={Home} options={{headerShown: true}}/>
     </Stack.Navigator>
   );
 };

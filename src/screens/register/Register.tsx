@@ -31,7 +31,7 @@ const Register: React.FC<RegisterContainerProps> = ({ navigation }) => {
       const response = await axios.post(Constants.endpoints.register, user);
       Alert.alert("Registration Successful!", "User registered successfully");
       //alert("User registered successfully");
-      navigation.navigate(RouteKeys.Login);
+      redirectLogin()
     } catch (err: any) {
       if(err.response)
       setError(`Unable to register! \n ${err.response.data.message}`);
@@ -40,7 +40,7 @@ const Register: React.FC<RegisterContainerProps> = ({ navigation }) => {
   };
 
   const redirectLogin = () => {
-    navigation?.navigate(RouteKeys.Login);
+    navigation?.replace(RouteKeys.Login);
   };
 
   return (

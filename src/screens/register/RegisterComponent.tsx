@@ -27,7 +27,7 @@ const RegisterComponent: FC<RegisterComponentProps> = ({
   redirectLogin,
 }) => {
   return (
-    <View style={{ margin: "auto" }}>
+    <View style={styles.container}>
       <Title text="Register" />
       <SubTitle text="Create an account" style={{ marginBottom: 40 }} />
       <TextInput
@@ -62,7 +62,12 @@ export default RegisterComponent;
 
 const styles = StyleSheet.create({
   container: {
-    margin: "auto",
+    flex:1,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    paddingHorizontal: 10,
+    maxWidth: 500,
+    margin:'auto'
   },
   subtitle: {
     marginBottom: 40,

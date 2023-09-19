@@ -59,7 +59,12 @@ export default LoginComponent;
 
 const styles = StyleSheet.create({
   container: {
-    margin: "auto",
+    flex:1,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    paddingHorizontal: 10,
+    maxWidth: 500,
+    margin:'auto'
   },
   subtitle: {
     marginBottom: 40,

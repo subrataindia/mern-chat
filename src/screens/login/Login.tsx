@@ -36,7 +36,7 @@ const LoginContainer: React.FC<LoginContainerProps> = ({ navigation }) => {
   };
 
   const redirectSignup = () => {
-    navigation?.navigate(RouteKeys.Register);
+    navigation?.replace(RouteKeys.Register);
   };
 
   useEffect(() => {
