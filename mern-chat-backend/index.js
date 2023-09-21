@@ -195,3 +195,24 @@ app.post("/friend-request/accept", async (req, res) => {
     res.status(500).json({ message: "Something went wrong!" });
   }
 });
+
+// endpoint to access all friends of a specific user
+app.post("/friends", async (req, res) => {
+  const { userId } = req.body;
+  console.log("Finding friends for:", userId);
+  try {
+    const response = await User.findById(userId).populate(
+      "friends",
+      "name email profilePicture"
+    );
+
+    if (response) {
+      console.log(response.friends);
+      res.status(200).json(response.friends);
+    } else {
+      res.status(500);
+    }
+  } catch (err) {
+    res.status(500);
+  }
+});

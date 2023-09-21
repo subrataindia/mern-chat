@@ -16,12 +16,12 @@ const SingleUser = ({ user }) => {
 
   useEffect(() => {
     setTitle(
-      user?.receivedFriendRequests?.includes(userId) || requestSent
+      user?.friends?.includes(userId)
+        ? friend
+        : user?.receivedFriendRequests?.includes(userId) || requestSent
         ? waiting
         : user?.sentFriendRequests?.includes(userId)
         ? accept
-        : user?.friends?.includes(userId)
-        ? friend
         : connect
     );
   }, []);

@@ -22,6 +22,7 @@ interface ConstantsType {
     acceptFriendRequest: string;
     revokeFriendRequest: string;
     rejectFriendRequest: string;
+    friends: string;
   };
 }
 
@@ -46,7 +47,8 @@ export const Constants: ConstantsType = {
     friendRequest: "",
     acceptFriendRequest: "",
     rejectFriendRequest: "",
-    revokeFriendRequest: ""
+    revokeFriendRequest: "",
+    friends: ""
   },
 };
 
@@ -58,4 +60,5 @@ Constants.endpoints = {
   acceptFriendRequest: `${Constants.baseUrl}/friend-request/accept`,
   revokeFriendRequest: `${Constants.baseUrl}/friend-request/revoke`,
   rejectFriendRequest: `${Constants.baseUrl}/friend-request/reject`,
+  friends: `${Constants.baseUrl}/friends`
 };

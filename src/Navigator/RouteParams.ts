@@ -9,6 +9,7 @@ export type RootStackParamList = {
   [RouteKeys.Login]: undefined;
   [RouteKeys.Register]: undefined;
   [RouteKeys.Home]: undefined;
+  [RouteKeys.Chat]: undefined
 };
 
 // Define the navigation prop type
@@ -28,3 +29,11 @@ export type HomeContainerNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   RouteKeys.Home
 >;
+
+// Define the navigation prop type
+export type ChatContainerNavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  RouteKeys.Chat
+>;
+
+

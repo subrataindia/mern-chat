@@ -10,7 +10,10 @@ import React, {
 import { NoButton } from "../../components";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Constants } from "../../utils/constants";
-import { HomeContainerNavigationProp } from "../../Navigator/RouteParams";
+import {
+  HomeContainerNavigationProp,
+  RootStackParamList,
+} from "../../Navigator/RouteParams";
 import { RouteKeys } from "../../Navigator/RouteKeys";
 import HomeComponent from "./HomeComponent";
 import jwtDecode from "jwt-decode";
@@ -22,7 +25,7 @@ export interface HomeScreenProps {
   users: any[];
 }
 
-const Home: FC<HomeScreenProps> = ({ navigation }) => {
+const Home = ({ navigation }) => {
   const { userId, setUserId } = useContext(UserContext);
   const [users, setUsers] = useState([]);
 

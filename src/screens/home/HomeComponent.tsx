@@ -1,13 +1,12 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React, { FC, useEffect, useLayoutEffect, useState } from "react";
-import { Ionicons } from "@expo/vector-icons";
-import { SimpleLineIcons } from "@expo/vector-icons";
 import { HomeScreenProps } from "./Home";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Constants } from "../../utils/constants";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 import { SingleUser } from "../../components";
+import HeaderRight from "../../Navigator/HeaderRight";
 
 const HomeComponent: FC<HomeScreenProps> = ({ navigation, users }) => {
   //console.log("Users with in component: ", users)
@@ -15,12 +14,7 @@ const HomeComponent: FC<HomeScreenProps> = ({ navigation, users }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTitle: "MERN Chat",
-      headerRight: () => (
-        <View style={styles.rightHeader}>
-          <Ionicons name="chatbox-ellipses-outline" size={24} color="black" />
-          <SimpleLineIcons name="people" size={24} color="black" />
-        </View>
-      ),
+      headerRight: () => <HeaderRight />,
     });
   }, []);
 
