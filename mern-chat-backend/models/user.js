@@ -17,18 +17,24 @@ const userSchema = new mongoose.Schema({
   profilePicture: {
     type: String,
   },
-  receivedFriendRequests: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
-  sentFriendRequests: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
-  friends: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
+  receivedFriendRequests: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  sentFriendRequests: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  friends: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 // Create a unique index on the 'email' field

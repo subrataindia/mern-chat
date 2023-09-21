@@ -26,7 +26,6 @@ const HomeComponent: FC<HomeScreenProps> = ({ navigation, users }) => {
 
   return (
     <View>
-      <Text>HomeComponent</Text>
       <View>
         {users.map((user, index) => (
           <SingleUser key={index} user={user} />

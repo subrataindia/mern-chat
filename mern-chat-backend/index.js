@@ -129,6 +129,7 @@ app.get("/users/:userId", (req, res) => {
 
   User.find({ _id: { $ne: loggedInUser } })
     .then((users) => {
+      console.log(users);
       res.status(200).json(users);
     })
     .catch((err) => {
@@ -139,20 +140,58 @@ app.get("/users/:userId", (req, res) => {
 // endpoint to send a request to a particular friend
 app.post("/friend-request", async (req, res) => {
   const { currentUserId, selectedUserId } = req.body;
-
+  console.log("Will send friend request", currentUserId, selectedUserId);
   try {
     // update the receipient's friend request array
     await User.findByIdAndUpdate(selectedUserId, {
       $push: { receivedFriendRequests: currentUserId },
     });
+    console.log(
+      "updated the receipient's friend request array ",
+      selectedUserId
+    );
 
     // update the sender's friend request array
     await User.findByIdAndUpdate(currentUserId, {
       $push: { sentFriendRequests: selectedUserId },
     });
 
+    console.log("updated the sender's friend request array ", currentUserId);
+
     res.sendStatus(200);
   } catch (e) {
+    console.log(e.message);
     res.sendStatus(500);
+  }
+});
+
+// endpoint to accept friend request
+app.post("/friend-request/accept", async (req, res) => {
+  const { senderId, receiverId } = req.body;
+  console.log("senderId: ", senderId, "receiverId: ", receiverId);
+  try {
+    const sender = await User.findById(senderId);
+    const receiver = await User.findById(receiverId);
+
+    console.log(sender, receiver);
+
+    sender.friends.push(receiverId);
+    receiver.friends.push(senderId);
+
+    sender.sentFriendRequests = sender.sentFriendRequests.filter(
+      (senderSingleId) => senderSingleId.toString() !== senderId.toString()
+    );
+
+    receiver.receivedFriendRequests = receiver.receivedFriendRequests.filter(
+      (receiverSingleId) =>
+        receiverSingleId.toString() !== receiverId.toString()
+    );
+
+    await sender.save();
+    await receiver.save();
+    console.log("Friend Request Successfully Accepted");
+    res.status(200).json({ message: "Successfully accepted." });
+  } catch (err) {
+    res.status(500).json({ message: "Something went wrong!" });
   }
 });

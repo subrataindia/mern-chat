@@ -4,19 +4,19 @@ import { NavigationContainer } from "@react-navigation/native";
 import React, { createContext, useState } from "react";
 import ErrorBoundary from "./ErrorBoundary";
 
-export const UserContext = createContext({ userId, setUserId });
+export const UserContext = createContext();
 
 const App = () => {
   const [userId, setUserId] = useState("");
 
   return (
-    <ErrorBoundary>
-      <UserContext.Provider value={{ userId, setUserId }}>
-        <NavigationContainer>
-          <MyStack />
-        </NavigationContainer>
-      </UserContext.Provider>
-    </ErrorBoundary>
+    // <ErrorBoundary>
+    <UserContext.Provider value={{ userId, setUserId }}>
+      <NavigationContainer>
+        <MyStack />
+      </NavigationContainer>
+    </UserContext.Provider>
+    // {/* </ErrorBoundary> */}
   );
 };
 

@@ -8,11 +8,20 @@ interface ConstantsType {
     home: string;
     register: string;
   };
+  friendRequest: {
+    waiting: string;
+    accept: string;
+    connect: string;
+    friend: string;
+  }
   endpoints: {
     login: string;
     register: string;
     fetchUsers: string;
     friendRequest: string;
+    acceptFriendRequest: string;
+    revokeFriendRequest: string;
+    rejectFriendRequest: string;
   };
 }
 
@@ -24,11 +33,20 @@ export const Constants: ConstantsType = {
     home: "Home",
     register: "Register",
   },
+  friendRequest: {
+    waiting: "Waiting",
+    accept: "Accept",
+    connect: "Connect",
+    friend: "Friend"
+  },
   endpoints: {
     login: "",
     register: "",
     fetchUsers: "",
-    friendRequest: ""
+    friendRequest: "",
+    acceptFriendRequest: "",
+    rejectFriendRequest: "",
+    revokeFriendRequest: ""
   },
 };
 
@@ -36,5 +54,8 @@ Constants.endpoints = {
   login: `${Constants.baseUrl}/login`,
   register: `${Constants.baseUrl}/register`,
   fetchUsers: `${Constants.baseUrl}/users`,
-  friendRequest: `${Constants.baseUrl}/friend-request`
+  friendRequest: `${Constants.baseUrl}/friend-request`,
+  acceptFriendRequest: `${Constants.baseUrl}/friend-request/accept`,
+  revokeFriendRequest: `${Constants.baseUrl}/friend-request/revoke`,
+  rejectFriendRequest: `${Constants.baseUrl}/friend-request/reject`,
 };

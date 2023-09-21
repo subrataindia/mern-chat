@@ -1,5 +1,12 @@
 import { View, Text } from "react-native";
-import React, { FC, useState, useEffect, useContext } from "react";
+import React, {
+  FC,
+  useState,
+  useEffect,
+  useContext,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { NoButton } from "../../components";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Constants } from "../../utils/constants";
@@ -18,6 +25,8 @@ export interface HomeScreenProps {
 const Home: FC<HomeScreenProps> = ({ navigation }) => {
   const { userId, setUserId } = useContext(UserContext);
   const [users, setUsers] = useState([]);
+
+  console.log("fetched users:", users);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -49,10 +58,9 @@ const Home: FC<HomeScreenProps> = ({ navigation }) => {
     navigation.replace(RouteKeys.Login);
   };
   return (
-    <View>
-      <Text>Home</Text>
-      <NoButton text="Logout" onPress={handleLogout} />
+    <View style={{ backgroundColor: "#FFF", flex: 1 }}>
       <HomeComponent navigation={navigation} users={users} />
+      <NoButton text="Logout" onPress={handleLogout} />
     </View>
   );
 };
